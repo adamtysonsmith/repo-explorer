@@ -8,3 +8,9 @@ export interface State {
   readonly nextPage: number;
   readonly sort: 'relevance' | 'stars';
 }
+
+export interface AppendedSearchResults {
+  nextSearchResults: any[];
+  totalResultsLength: number;
+  noResults: boolean;
+}

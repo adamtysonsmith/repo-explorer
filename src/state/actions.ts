@@ -4,13 +4,7 @@ import {
   SORT_BY,
   RESET_ALL,
 } from './constants'
-import { Sort } from './types'
-
-export interface AppendedSearchResults {
-  nextSearchResults: any[];
-  totalResultsLength: number;
-  noResults: boolean;
-}
+import { Sort, AppendedSearchResults } from './types'
 
 export const setSearchQuery = (searchQuery: string) => ({
   type: SET_SEARCH_QUERY,

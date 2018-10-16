@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 import { GITHUB_API } from '../config'
 import SearchResults from '../components/SearchResults'
-import { State } from '../state/types'
-import { AppendedSearchResults, appendSearchResults } from '../state/actions'
+import { State, AppendedSearchResults } from '../state/types'
+import { appendSearchResults } from '../state/actions'
 
 interface DispatchProps {
   appendSearchResults: (data: AppendedSearchResults) => void;
@@ -60,5 +60,4 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
   appendSearchResults: (data: AppendedSearchResults) => dispatch(appendSearchResults(data))
 })
 
-// @todo any
 export default connect(mapStateToProps, mapDispatchToProps)(SearchResultsContainer as any)

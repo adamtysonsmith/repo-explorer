@@ -1,6 +1,7 @@
 import React from 'react'
 import { Dispatch, AnyAction } from 'redux'
 import { connect } from 'react-redux'
+import debounce from 'lodash.debounce'
 import { setSearchQuery, sortBy, resetAll } from '../state/actions'
 import SearchBar from '../components/SearchBar'
 import { State, Sort } from '../state/types'
@@ -27,8 +28,8 @@ class SearchBarContainer extends React.PureComponent<StateProps & DispatchProps,
 
   setInputValue = (evt: React.FormEvent<HTMLInputElement>) => {
     // reset search query when input changes
-    // @todo debounce the reset 
-    this.setState({ inputValue: evt.currentTarget.value }, this.props.resetAll)
+    this.setState({ inputValue: evt.currentTarget.value })
+    this.props.resetAll()
   }
 
   search = () => this.props.setSearchQuery(this.state.inputValue)
@@ -55,8 +56,7 @@ const mapStateToProps = (state: State): StateProps => ({
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
   setSearchQuery: (searchQuery: string) => dispatch(setSearchQuery(searchQuery)),
   sortBy: (sort: Sort) => dispatch(sortBy(sort)),
-  resetAll: () => dispatch(resetAll()),
+  resetAll: debounce(() => dispatch(resetAll()), 500),
 });
 
-// @todo any
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBarContainer as any)

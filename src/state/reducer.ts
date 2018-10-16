@@ -1,5 +1,5 @@
 import createReducer from './createReducer'
-import { State, Sort } from './types'
+import { State, Sort, AppendedSearchResults } from './types'
 import {
   SET_SEARCH_QUERY,
   APPEND_SEARCH_RESULTS,
@@ -16,20 +16,19 @@ export const initialState: State = {
   sort: 'relevance',
 }
 
-// @todo types
 export const rootReducer = createReducer(initialState, {
-  [SET_SEARCH_QUERY]: (state, payload): State => ({
+  [SET_SEARCH_QUERY]: (state: State, payload: string): State => ({
     ...state,
     searchQuery: payload,
   }),
-  [APPEND_SEARCH_RESULTS]: (state, payload): State => ({
+  [APPEND_SEARCH_RESULTS]: (state: State, payload: AppendedSearchResults): State => ({
     ...state,
     searchResults: state.searchResults.concat(payload.nextSearchResults),
     totalResultsLength: payload.totalResultsLength,
     noResults: payload.noResults,
     nextPage: state.nextPage + 1,
   }),
-  [SORT_BY]: (state, payload: Sort): State => ({
+  [SORT_BY]: (state: State, payload: Sort): State => ({
     ...state,
     searchResults: [],
     totalResultsLength: 0,
@@ -37,7 +36,7 @@ export const rootReducer = createReducer(initialState, {
     nextPage: 1,
     sort: payload,
   }),
-  [RESET_ALL]: (state, payload: State): State => ({
+  [RESET_ALL]: (state: State): State => ({
     ...initialState
   }),
 })

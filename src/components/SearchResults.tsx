@@ -60,7 +60,9 @@ const SearchResults: React.SFC<SearchResultsProps> = (props) =>
                   avatarUrl={result.owner.avatar_url}
                   name={result.full_name}
                   description={result.description}
+                  language={result.language}
                   stars={result.stargazers_count}
+                  owner={result.owner.login}
                 />
             )
           }

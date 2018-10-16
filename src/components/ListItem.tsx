@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Tag from './Tag'
 
 const Container = styled.div`
   background-color: white;
@@ -35,7 +36,17 @@ interface ListItemProps {
   avatarUrl: string;
   name: string;
   description: string;
+  language: string;
   stars: number;
+  owner: string;
+}
+
+const formatDesc = (desc: string) => {
+  if (desc && desc.length) {
+    return desc.length > 140 ? desc.slice(0, 160) + '...' : desc
+  }
+
+  return 'No description.'
 }
 
 const ListItem: React.SFC<ListItemProps> = (props) => 
@@ -43,9 +54,10 @@ const ListItem: React.SFC<ListItemProps> = (props) =>
     <img src={props.avatarUrl} width={40} style={{ verticalAlign: 'top' }} />
     <TextContainer>
       <Text>
-        <a href={`https://github.com/${props.name}`}>https://github.com/${props.name}</a>
+        <a href={`https://github.com/${props.name}`}>https://github.com/${props.name}</a> by {props.owner}
       </Text>
-      <Text>{props.description || 'No description.'}</Text>
+      <Text>{formatDesc(props.description)}</Text>
+      <Tag lang={props.language}>{props.language || 'Unknown'}</Tag>
     </TextContainer>
     <StarContainer>
       <StarText>⭐ {props.stars}</StarText>

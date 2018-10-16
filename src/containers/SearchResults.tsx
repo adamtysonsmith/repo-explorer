@@ -2,7 +2,7 @@ import React from 'react'
 import { Dispatch, AnyAction } from 'redux'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import { GITHUB_API } from '../config'
+import { API_URL } from '../config'
 import SearchResults from '../components/SearchResults'
 import { State, AppendedSearchResults } from '../state/types'
 import { appendSearchResults } from '../state/actions'
@@ -14,8 +14,8 @@ interface DispatchProps {
 class SearchResultsContainer extends React.PureComponent<State & DispatchProps> {
   getUrl = () => {
     const urlsBySort = {
-      relevance: `${GITHUB_API}?q=${this.props.searchQuery}&page=${this.props.nextPage}`,
-      stars: `${GITHUB_API}?q=${this.props.searchQuery}&page=${this.props.nextPage}&sort=stars`,
+      relevance: `${API_URL}/repositories?q=${this.props.searchQuery}&page=${this.props.nextPage}`,
+      stars: `${API_URL}/repositories?q=${this.props.searchQuery}&page=${this.props.nextPage}&sort=stars`,
     }
 
     return urlsBySort[this.props.sort]

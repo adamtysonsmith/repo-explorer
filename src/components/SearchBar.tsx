@@ -5,14 +5,14 @@ import SortControl from './SortControl'
 import { Sort } from '../state/types'
 
 const Container = styled.div`
-  width: 535px;
+  width: 660px;
   margin: 0 auto;
 `
 
 const Input = styled.input`
   text-align: left;
   vertical-align: bottom;
-  width: 200px;
+  width: 280px;
   height: 28px;
   border: 2px solid black;
   color: black;

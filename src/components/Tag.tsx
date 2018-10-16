@@ -36,13 +36,13 @@ const getColor = (lang?: string) => {
 
 const Tag = styled.p`
   display: inline-block;
-  margin: 5px 0px 0px 0px;
+  margin: 7px 0px 0px 0px;
   background-color: ${props => getColor(props.lang)};
-  padding: 5px 10px;
+  padding: 6px 14px;
   border-radius: 3px;
   text-transform: uppercase;
   font-weight: bold;
-  font-size: 8px;
+  font-size: 11px;
   font-family: Helvetica;
   color: white;
 `

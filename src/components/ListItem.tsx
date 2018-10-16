@@ -11,7 +11,7 @@ const Container = styled.div`
 
 const TextContainer = styled.div`
   display: inline-block;
-  max-width: 400px;
+  max-width: 600px;
   margin-left: 10px;
 `
 
@@ -23,12 +23,12 @@ const StarContainer = styled.div`
 
 const Text = styled.p`
   font-family: Roboto;
-  font-size: 11px;
+  font-size: 14px;
   margin: 0px;
 `
 
 const StarText = styled(Text)`
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
 `
 
@@ -51,7 +51,7 @@ const formatDesc = (desc: string) => {
 
 const ListItem: React.SFC<ListItemProps> = (props) => 
   <Container>
-    <img src={props.avatarUrl} width={40} style={{ verticalAlign: 'top' }} />
+    <img src={props.avatarUrl} width={80} style={{ verticalAlign: 'top' }} />
     <TextContainer>
       <Text>
         <a href={`https://github.com/${props.name}`}>https://github.com/${props.name}</a> by {props.owner}

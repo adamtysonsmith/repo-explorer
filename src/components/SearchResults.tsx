@@ -8,11 +8,11 @@ const Message = styled.p`
   font-family: Roboto;
   text-align: center;
   margin-top: 20px;
-  font-size: 14px;
+  font-size: 16px;
 `
 
 const ResultCount = styled(Message)`
-  font-size: 10px;
+  font-size: 12px;
   margin-bottom: 0px;
 `
 

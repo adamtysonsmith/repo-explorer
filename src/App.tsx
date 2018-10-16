@@ -1,6 +1,19 @@
 import React from 'react'
+import AppContainer from './components/AppContainer'
+import Logo from './components/Logo'
+import SearchBar from './containers/SearchBar'
+import SearchResults from './containers/SearchResults'
 
-export default () =>
-  <div>
-    <h1>hello world</h1>
-  </div>
+class App extends React.PureComponent {
+  render() {
+    return (
+      <AppContainer>
+        <Logo />
+        <SearchBar />
+        <SearchResults />
+      </AppContainer>
+    )
+  }
+}
+
+export default App

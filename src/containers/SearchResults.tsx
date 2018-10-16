@@ -28,19 +28,22 @@ class SearchResultsContainer extends React.PureComponent<State & DispatchProps> 
           this.props.appendSearchResults({
             nextSearchResults: res.data.items,
             totalResultsLength: res.data.total_count,
+            noResults: !res.data.total_count,
           })
         })
     }
   }
 
   hasMore = (): boolean => {
+    if (this.props.noResults) return false
     if (this.props.searchQuery && !this.props.totalResultsLength) return true
     return this.props.totalResultsLength > this.props.searchResults.length
   }
 
   render() {
     const props = {
-      ...this.props,
+      searchResults: this.props.searchResults,
+      noResults: this.props.noResults,
       fetchData: this.fetchData,
       hasMore: this.hasMore(),
     }

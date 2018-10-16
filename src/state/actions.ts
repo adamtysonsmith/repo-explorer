@@ -9,6 +9,7 @@ import { Sort } from './types'
 export interface AppendedSearchResults {
   nextSearchResults: any[];
   totalResultsLength: number;
+  noResults: boolean;
 }
 
 export const setSearchQuery = (searchQuery: string) => ({

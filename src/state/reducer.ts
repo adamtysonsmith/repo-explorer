@@ -11,6 +11,7 @@ export const initialState: State = {
   searchQuery: '',
   searchResults: [],
   totalResultsLength: 0,
+  noResults: false,
   nextPage: 1,
   sort: 'relevance',
 }
@@ -25,12 +26,14 @@ export const rootReducer = createReducer(initialState, {
     ...state,
     searchResults: state.searchResults.concat(payload.nextSearchResults),
     totalResultsLength: payload.totalResultsLength,
+    noResults: payload.noResults,
     nextPage: state.nextPage + 1,
   }),
   [SORT_BY]: (state, payload: Sort): State => ({
     ...state,
     searchResults: [],
     totalResultsLength: 0,
+    noResults: false,
     nextPage: 1,
     sort: payload,
   }),

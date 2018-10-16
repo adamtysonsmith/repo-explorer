@@ -1,12 +1,18 @@
 import React from 'react'
 import styled, { StyledFunction } from 'styled-components'
 import Button, { ButtonProps } from './Button'
+import { Sort } from '../state/types'
 
 interface SegmentButtonProps extends ButtonProps {
   selected: boolean;
 }
 
 const button: StyledFunction<SegmentButtonProps> = styled(Button)
+
+const SegmentContainer = styled.div`
+  display: inline-block;
+  margin-left: 25px;
+`
 
 const SegmentButton = button`
   width: 105px;
@@ -17,14 +23,17 @@ const SegmentButton = button`
 interface SortControlProps {
   sortByRelevance: () => void;
   sortByStars: () => void;
-  isSortedByRelevance: boolean;
-  isSortedByStars: boolean;
+  sort: Sort;
 }
 
-const SortControl = (props) =>
-  <div style={{ display: 'inline-block', marginLeft: '25px' }}>
-    <SegmentButton onClick={props.sortByRelevance} selected={props.isSortedByRelevance}>Relevance</SegmentButton>
-    <SegmentButton onClick={props.sortByStars} selected={props.isSortedByStars}>Stars</SegmentButton>
-  </div>
+const SortControl: React.SFC<SortControlProps> = (props) =>
+  <SegmentContainer>
+    <SegmentButton onClick={props.sortByRelevance} selected={props.sort === 'relevance'}>
+      Relevance
+    </SegmentButton>
+    <SegmentButton onClick={props.sortByStars} selected={props.sort === 'stars'}>
+      Stars
+    </SegmentButton>
+  </SegmentContainer>
 
 export default SortControl

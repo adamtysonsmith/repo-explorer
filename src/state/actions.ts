@@ -1,8 +1,10 @@
 import {
   SET_SEARCH_QUERY,
   APPEND_SEARCH_RESULTS,
+  SORT_BY,
   RESET_ALL,
 } from './constants'
+import { Sort } from './types'
 
 export interface AppendedSearchResults {
   nextSearchResults: any[];
@@ -16,6 +18,11 @@ export const setSearchQuery = (searchQuery: string) => ({
 
 export const appendSearchResults = (payload: AppendedSearchResults) => ({
   type: APPEND_SEARCH_RESULTS,
+  payload,
+})
+
+export const sortBy = (payload: Sort) => ({
+  type: SORT_BY,
   payload,
 })
 

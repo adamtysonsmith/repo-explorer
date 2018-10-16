@@ -1,28 +1,21 @@
+import createReducer from './createReducer'
+import { State, Sort } from './types'
 import {
   SET_SEARCH_QUERY,
   APPEND_SEARCH_RESULTS,
   RESET_ALL,
+  SORT_BY,
 } from './constants'
-
-const createReducer = (initialState, reducers) => (state = initialState, action) => {
-  const fn = reducers[action.type]
-  return fn ? fn(state, action.payload) : state
-}
-
-export interface State {
-  readonly searchQuery: string,
-  readonly searchResults: any[];
-  readonly totalResultsLength: number;
-  readonly nextPage: number;
-}
 
 export const initialState: State = {
   searchQuery: '',
   searchResults: [],
   totalResultsLength: 0,
   nextPage: 1,
+  sort: 'relevance',
 }
 
+// @todo types
 export const rootReducer = createReducer(initialState, {
   [SET_SEARCH_QUERY]: (state, payload): State => ({
     ...state,
@@ -34,10 +27,14 @@ export const rootReducer = createReducer(initialState, {
     totalResultsLength: payload.totalResultsLength,
     nextPage: state.nextPage + 1,
   }),
-  [RESET_ALL]: (state, payload): State => ({
-    searchQuery: '',
+  [SORT_BY]: (state, payload: Sort): State => ({
+    ...state,
     searchResults: [],
     totalResultsLength: 0,
     nextPage: 1,
+    sort: payload,
+  }),
+  [RESET_ALL]: (state, payload: State): State => ({
+    ...initialState
   }),
 })

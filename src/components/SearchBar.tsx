@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import SearchButton from './Button'
 import SortControl from './SortControl'
+import { Sort } from '../state/types'
 
 const Input = styled.input`
   text-align: left;
@@ -20,23 +21,19 @@ const Input = styled.input`
 interface SearchBarProps {
   search: () => void;
   setInputValue: (val: any) => void;
-  sortByRelevance: () => void;
-  sortByStars: () => void;
-  isSortedByRelevance: boolean;
-  isSortedByStars: boolean;
+  sortBy: (sort: Sort) => void;
+  sort: Sort;
 }
 
 // @todo remove inline styles
-
 const SearchBar: React.SFC<SearchBarProps> = (props) =>
   <div style={{ width: '535px', margin: '0 auto' }}>
     <Input type="text" onChange={props.setInputValue} />
     <SearchButton onClick={props.search}>Search</SearchButton>
     <SortControl
-      sortByRelevance={props.sortByRelevance}
-      sortByStars={props.sortByStars}
-      isSortedByRelevance={props.isSortedByRelevance}
-      isSortedByStars={props.isSortedByStars}
+      sortByRelevance={() => props.sortBy('relevance')}
+      sortByStars={() => props.sortBy('stars')}
+      sort={props.sort}
     />
   </div>
 

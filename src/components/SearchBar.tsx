@@ -4,6 +4,11 @@ import SearchButton from './Button'
 import SortControl from './SortControl'
 import { Sort } from '../state/types'
 
+const Container = styled.div`
+  width: 535px;
+  margin: 0 auto;
+`
+
 const Input = styled.input`
   text-align: left;
   vertical-align: bottom;
@@ -25,9 +30,8 @@ interface SearchBarProps {
   sort: Sort;
 }
 
-// @todo remove inline styles
 const SearchBar: React.SFC<SearchBarProps> = (props) =>
-  <div style={{ width: '535px', margin: '0 auto' }}>
+  <Container>
     <Input type="text" onChange={props.setInputValue} />
     <SearchButton onClick={props.search}>Search</SearchButton>
     <SortControl
@@ -35,6 +39,6 @@ const SearchBar: React.SFC<SearchBarProps> = (props) =>
       sortByStars={() => props.sortBy('stars')}
       sort={props.sort}
     />
-  </div>
+  </Container>
 
 export default SearchBar

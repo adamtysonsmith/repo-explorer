@@ -42,6 +42,7 @@ class SearchResultsContainer extends React.PureComponent<State & DispatchProps> 
 
   render() {
     const props = {
+      totalResultsLength: this.props.totalResultsLength,
       searchResults: this.props.searchResults,
       noResults: this.props.noResults,
       fetchData: this.fetchData,
